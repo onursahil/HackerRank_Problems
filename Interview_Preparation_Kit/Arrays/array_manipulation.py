@@ -1,19 +1,19 @@
 def array_manipulation(n, queries):
-    arr = [0] * n
+    arr = [0]*n
     
-    for i in range(len(queries)):
-        
-        specs = queries[i]
-        a, b, k = specs[0], specs[1], specs[2]
+    for i in queries:
+        arr[i[0] - 1] += i[2]
+        if i[1] != len(arr):
+            arr[i[1]] -= i[2]
 
-        arr[a - 1: b] = map((k).__add__, arr[a - 1: b])
+    maxval = 0
+    itt = 0
+    for q in arr:
+        itt += q
+        if itt > maxval:
+            maxval = itt
 
-    max_val = 0
-    for item in arr:
-        if item > max_val:
-            max_val = item
-    
-    return max_val
+    return maxval
 
 def main():
     n = 10
