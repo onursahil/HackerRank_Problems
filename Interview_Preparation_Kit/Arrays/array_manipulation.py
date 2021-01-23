@@ -1,22 +1,25 @@
 def array_manipulation(n, queries):
     arr = [0] * n
-
+    
     for i in range(len(queries)):
+        
         specs = queries[i]
         a, b, k = specs[0], specs[1], specs[2]
 
-        for j in range(a-1, b):
-            arr[j] += k
-    
-    max_value = max(arr)
+        arr[a - 1: b] = map((k).__add__, arr[a - 1: b])
 
-    return max_value
+    max_val = 0
+    for item in arr:
+        if item > max_val:
+            max_val = item
+    
+    return max_val
 
 def main():
     n = 10
     queries = [[1, 5, 3], [4, 8, 7], [6, 9, 1]]
     answer = array_manipulation(n, queries)
-    return answer
+    print(answer)
 
 if __name__ == "__main__":
     main()
